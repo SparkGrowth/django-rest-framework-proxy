@@ -11,13 +11,14 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.utils.mediatypes import media_type_matches
 from rest_framework.exceptions import UnsupportedMediaType
-
+from rest_framework.permissions import AllowAny
 from rest_framework_proxy.settings import api_proxy_settings
 from rest_framework_proxy.adapters import StreamingHTTPAdapter
 from rest_framework_proxy.utils import StreamingMultipart, generate_boundary
 
 
 class BaseProxyView(APIView):
+    permission_classes = [AllowAny]
     proxy_settings = api_proxy_settings
     proxy_host = None
     source = None
